@@ -17,7 +17,7 @@ export default function AllProjects() {
       description: "Premium Nutrition Tracker - React Native app featuring 'Owen' the AI Assistant, Midnight Teal dark mode, 9,000+ item offline SQLite database, barcode scanning, and real-time macro progress tracking with streaks.",
       url: "github.com/unsatisfieDg/Owen",
       tags: ["React Native", "Expo", "SQLite", "AI Assistant"],
-      image: "/Dg-s/owen_icon.png",
+      image: "/dgs_portfolio/owen_icon.png",
       color: "#0f766e" // Midnight Teal
     },
     {
