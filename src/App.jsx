@@ -5,10 +5,8 @@ import AllCertifications from './pages/AllCertifications';
 import AllProjects from './pages/AllProjects';
 
 export default function App() {
-  const basename = import.meta.env.PROD ? '/Dg-s' : '/';
-  
   return (
-    <Router basename={basename}>
+    <Router basename="/Dg-s">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/certifications" element={<AllCertifications />} />
@@ -16,4 +14,4 @@ export default function App() {
       </Routes>
     </Router>
   );
-}
+}
