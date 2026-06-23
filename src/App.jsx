@@ -6,7 +6,7 @@ import AllProjects from './pages/AllProjects';
 
 export default function App() {
   return (
-    <Router basename="/Dg-s">
+    <Router basename="/dgs_portfolio">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/certifications" element={<AllCertifications />} />
