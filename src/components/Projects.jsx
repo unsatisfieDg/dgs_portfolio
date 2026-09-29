@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, FolderGit2, ArrowRight } from 'lucide-react';
 
 export default function Projects() {
   const [hoveredProject, setHoveredProject] = useState(null);
@@ -12,13 +12,13 @@ export default function Projects() {
       description: "A premium nutrition tracker with the 'Owen' AI Assistant. Features include Midnight Teal dark mode, real-time macro tracking, barcode scanning, and a 9,000+ item offline SQLite database.",
       url: "github.com/unsatisfieDg/Owen",
       tags: ["React Native", "Expo", "SQLite", "AI Assistant"],
-      image: "/dgs_portfolio/owen_icon.png",
+      image: `${import.meta.env.BASE_URL}owen_icon.png`,
       color: "#0f766e" // Midnight Teal
     },
     {
       name: "Coffee Shop Reservation",
       type: "Web App",
-      description: "A full-stack reservation system for a coffee shop. It includes secure user accounts, a table booking feature, and a responsive design. Built as my first full-stack project to practice backend logic and database management.",
+      description: "A full-stack reservation system for a coffee shop with secure user accounts, interactive table booking, and responsive UI. Built to demonstrate solid backend architecture and database management.",
       url: "github.com/unsatisfieDg/Coffee-Shop-Reservation-Website-First-Full-Stack-project-as-a-student-",
       tags: ["PHP", "MySQL", "JavaScript", "HTML5", "CSS3"],
       image: "https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=800&q=80"
@@ -28,88 +28,101 @@ export default function Projects() {
   const displayedProjects = projects.slice(0, 2);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 sm:p-6">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
-          Projects
-        </h2>
+    <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-2xl border border-gray-200 dark:border-gray-800 p-6 sm:p-7 shadow-sm">
+      <div className="flex justify-between items-center mb-6 pb-4 border-b border-gray-100 dark:border-gray-800/80">
+        <div className="flex items-center gap-2.5">
+          <div className="p-2 rounded-xl bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400">
+            <FolderGit2 size={20} />
+          </div>
+          <div>
+            <span className="text-[11px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Featured</span>
+            <h2 className="text-xl sm:text-2xl font-black text-gray-900 dark:text-white tracking-tight">
+              Selected Projects
+            </h2>
+          </div>
+        </div>
 
         <Link 
           to="/projects"
-          className="text-xs sm:text-sm text-blue-500 dark:text-blue-400 hover:text-blue-600 dark:hover:text-blue-300 cursor-pointer transition-colors"
+          className="group inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
         >
-          View All
+          <span>View All</span>
+          <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 gap-3 sm:gap-4">
+      <div className="grid grid-cols-1 gap-5">
         {displayedProjects.map((project, index) => (
           <div 
             key={index}
-            className="relative group overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800 bg-gray-900 transition-all duration-300 hover:scale-[1.01] hover:shadow-lg cursor-pointer"
-            style={{ minHeight: "180px" }}
+            className="relative group overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-800 bg-gray-950 transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 cursor-pointer"
+            style={{ minHeight: "220px" }}
             onMouseEnter={() => setHoveredProject(index)}
             onMouseLeave={() => setHoveredProject(null)}
           >
-            {/* Background Image/Color */}
+            {/* Background Image / Color */}
             <div 
-              className="absolute inset-0 transition-transform duration-500 group-hover:scale-110"
+              className="absolute inset-0 transition-transform duration-700 group-hover:scale-110"
               style={{ 
                 backgroundColor: project.color || '#111827',
                 backgroundImage: `url(${project.image})`,
-                backgroundSize: project.name === 'Owen' ? '40%' : 'cover',
+                backgroundSize: project.name === 'Owen' ? '32%' : 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
-                filter: project.name === 'Owen' ? 'brightness(0.8)' : 'brightness(0.4)'
+                filter: project.name === 'Owen' ? 'brightness(0.7)' : 'brightness(0.35)'
               }}
             />
             
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+            {/* Dark gradient mask */}
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/70 to-transparent" />
             
-            {/* Content - Landscape Layout */}
-            <div className="relative h-full flex flex-col justify-between p-3">
-              {/* Top Section - Label */}
+            {/* Numbering badge (RyHar inspired) */}
+            <div className="absolute top-3.5 right-3.5 z-10 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-mono font-bold text-white/90 tracking-wider">
+              {String(index + 1).padStart(2, "0")}
+            </div>
+
+            {/* Content */}
+            <div className="relative h-full flex flex-col justify-between p-5 z-10">
+              {/* Type pill */}
               <div>
-                <span className="inline-block px-2 py-0.5 text-[10px] font-medium bg-blue-500/20 text-blue-400 rounded-full border border-blue-500/30">
+                <span className="inline-flex items-center px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider bg-blue-500/20 text-blue-300 rounded-lg border border-blue-500/30 backdrop-blur-sm">
                   {project.type}
                 </span>
               </div>
               
-              {/* Bottom Section - Title */}
-              <div>
-                <h3 className="text-base sm:text-lg font-bold text-white mb-2 leading-tight">
+              {/* Bottom Details */}
+              <div className="space-y-2.5 pt-6">
+                <h3 className="text-lg sm:text-xl font-black text-white tracking-tight group-hover:text-blue-400 transition-colors">
                   {project.name}
                 </h3>
                 
-                {/* Tech Stack Tags and Button - Show on Hover */}
-                <div className={`transition-all duration-300 ${
-                  hoveredProject === index 
-                    ? 'opacity-100 translate-y-0' 
-                    : 'opacity-0 translate-y-4'
-                }`}>
-                  {/* Tech Stack Tags */}
-                  <div className="flex flex-wrap gap-1.5 mb-2">
-                    {project.tags.map(tag => (
-                      <span 
-                        key={tag} 
-                        className="px-2 py-0.5 text-[10px] font-medium bg-gray-800/80 text-gray-200 rounded border border-gray-700"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  
-                  {/* View Project Button */}
+                <p className="text-xs sm:text-sm text-gray-300/90 line-clamp-2 leading-relaxed">
+                  {project.description}
+                </p>
+
+                {/* Tech tags */}
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {project.tags.map(tag => (
+                    <span 
+                      key={tag} 
+                      className="px-2 py-0.5 text-[10px] font-semibold bg-white/10 text-gray-200 rounded-md border border-white/10 backdrop-blur-md"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* View Project link */}
+                <div className="pt-2 flex items-center justify-between">
                   <a
                     href={`https://${project.url}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] bg-white/10 hover:bg-white/20 text-white rounded border border-white/20 transition-colors backdrop-blur-sm"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-white hover:text-blue-400 transition-colors group/btn"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    View Project
-                    <ExternalLink size={12} />
+                    <span>View Repository</span>
+                    <ExternalLink size={13} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
                   </a>
                 </div>
               </div>

@@ -31,15 +31,15 @@ export default function AllProjects() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors">
-      <div className="max-w-5xl mx-auto px-3 sm:px-4 md:px-6 py-6 sm:py-8 md:py-12 pb-8">
+    <div className="min-h-screen bg-gray-50/70 dark:bg-gray-950 transition-colors text-gray-900 dark:text-gray-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-8 sm:py-12 md:py-16 pb-12">
         {/* Header */}
-        <div className="mb-6 sm:mb-8">
+        <div className="mb-8 sm:mb-10">
           <Link 
             to="/" 
-            className="inline-flex items-center gap-1.5 sm:gap-2 text-sm sm:text-base text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors mb-3 sm:mb-4"
+            className="inline-flex items-center gap-2 text-sm sm:text-base font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors mb-4"
           >
-            <ArrowLeft size={18} className="sm:w-5 sm:h-5" />
+            <ArrowLeft size={18} />
             <span>Back to Home</span>
           </Link>
           

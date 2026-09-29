@@ -1,24 +1,52 @@
-import React, { useState } from "react";
-import { Download, MapPin, Mail } from 'lucide-react';
+import React, { useState, useEffect, useMemo } from "react";
+import { Download, MapPin, Mail, Github, Sparkles, GraduationCap, Code2, Cpu } from 'lucide-react';
 import DarkModeToggle from './DarkModeToggle';
 
 export default function Hero() {
   const [isHovered, setIsHovered] = useState(false);
   const [isTapped, setIsTapped] = useState(false);
 
+  // Typewriter effect states
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [subIndex, setSubIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const roles = useMemo(() => [
+    "Software Engineer",
+    "Front End Developer",
+    "AI Integration Specialist",
+    "Full Stack Developer"
+  ], []);
+
+  useEffect(() => {
+    const currentRole = roles[roleIndex % roles.length];
+
+    const timer = setTimeout(() => {
+      if (!isDeleting && subIndex < currentRole.length) {
+        setSubIndex(prev => prev + 1);
+      } else if (isDeleting && subIndex > 0) {
+        setSubIndex(prev => prev - 1);
+      } else if (!isDeleting && subIndex === currentRole.length) {
+        setTimeout(() => setIsDeleting(true), 1200);
+      } else if (isDeleting && subIndex === 0) {
+        setIsDeleting(false);
+        setRoleIndex(prev => (prev + 1) % roles.length);
+      }
+    }, isDeleting ? 45 : 95);
+
+    return () => clearTimeout(timer);
+  }, [subIndex, isDeleting, roleIndex, roles]);
+
   const handleTap = () => {
     setIsTapped(prev => !prev);
-    // Reset hover state to prevent conflicts
     setIsHovered(false);
   };
   
-  // Show alternate image if either tapped or hovered
-  // But prioritize tap state on mobile
   const showAlternateImage = isTapped || isHovered;
 
   const scrollToContent = () => {
     window.scrollTo({
-      top: window.innerHeight,
+      top: window.innerHeight * 0.95,
       behavior: 'smooth'
     });
   };
@@ -34,117 +62,207 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-start md:items-center justify-center text-center md:text-left px-4 sm:px-8 pt-20 sm:pt-24 md:pt-0">
-      {/* Content Container */}
-      <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-center md:justify-between gap-6 sm:gap-10 md:gap-14">
+    <section className="relative min-h-[92vh] w-full flex items-center justify-center px-4 sm:px-6 md:px-12 py-16 md:py-24 overflow-hidden">
+      {/* Ambient background glow for width & atmosphere */}
+      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 -translate-x-1/2 w-96 h-96 bg-blue-500/10 dark:bg-blue-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="absolute top-1/3 right-1/4 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-teal-500/10 dark:bg-teal-600/10 rounded-full blur-[140px] pointer-events-none"></div>
+
+      {/* Main Content Container - 7XL width for full canvas utilization */}
+      <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         
-        {/* Profile Image */}
-        <div
-          className="relative w-28 h-28 sm:w-40 sm:h-40 md:w-48 md:h-48 flex-shrink-0 cursor-pointer rounded-2xl overflow-hidden shadow-lg transition-all duration-300 active:scale-95 touch-target select-none touch-manipulation"
-          onMouseEnter={() => !isTapped && setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          onPointerDown={handleTap}
-          role="button"
-          tabIndex={0}
-          aria-label="Tap to toggle profile photo"
-        >
-          <img
-            src={`${import.meta.env.BASE_URL}profile.jpg`}
-            alt="Danie Glenn Sapdaan Jr."
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 pointer-events-none ${
-              showAlternateImage ? 'opacity-0' : 'opacity-100'
-            }`}
-          />
-          <img
-            src={`${import.meta.env.BASE_URL}profile-hover.jpg`}
-            alt="Danie Glenn Sapdaan Jr. - Alternate"
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 pointer-events-none ${
-              showAlternateImage ? 'opacity-100' : 'opacity-0'
-            }`}
-          />
-        </div>
-
-        {/* Text Section */}
-        <div className="flex-1 space-y-2 sm:space-y-3 md:space-y-5 animate-fadeIn">
-          <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 dark:text-white leading-tight">
-            Danie Glenn Sapdaan Jr.
-          </h1>
-
-          <div className="flex items-center justify-center md:justify-start gap-1.5 sm:gap-2 text-gray-600 dark:text-gray-400">
-            <MapPin size={16} className="sm:w-[18px] sm:h-[18px]" />
-            <span className="text-xs sm:text-sm md:text-lg">Ilocos Sur, Philippines</span>
+        {/* Left Column: Info & Typography */}
+        <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
+          
+          {/* Status Badge */}
+          <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 shadow-sm">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span className="text-xs font-semibold text-emerald-800 dark:text-emerald-300 tracking-wide uppercase">
+              Available for Opportunities
+            </span>
           </div>
 
-          <p className="text-sm sm:text-base md:text-lg text-gray-700 dark:text-gray-300">
-            Software Engineer | Front End Developer | AI Integration Specialist
+          {/* Heading */}
+          <div className="space-y-2">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-gray-900 dark:text-white tracking-tighter leading-[1.08]">
+              Hi, I&apos;m{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-teal-500 to-indigo-600 dark:from-blue-400 dark:via-teal-300 dark:to-indigo-300">
+                Danie Glenn
+              </span>
+            </h1>
+
+            {/* Typewriter role line */}
+            <div className="h-9 sm:h-11 flex items-center justify-center lg:justify-start">
+              <span className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-200 tracking-tight">
+                {roles[roleIndex % roles.length].substring(0, subIndex)}
+              </span>
+              <span className="animate-cursor text-blue-600 dark:text-blue-400 text-2xl sm:text-3xl font-light ml-0.5">
+                |
+              </span>
+            </div>
+          </div>
+
+          {/* Location & Intro */}
+          <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm sm:text-base font-medium">
+            <MapPin size={18} className="text-blue-600 dark:text-blue-400 flex-shrink-0" />
+            <span>Ilocos Sur, Philippines</span>
+          </div>
+
+          <p className="max-w-xl text-gray-600 dark:text-gray-300 text-base sm:text-lg leading-relaxed font-normal">
+            Software developer passionate about engineering meaningful digital experiences, high-performance web applications, and intuitive AI-integrated solutions.
           </p>
 
-          {/* Dark Mode Toggle - Below subtitle (Mobile only) */}
-          <div className="md:hidden flex justify-center md:justify-start pt-1">
-            <DarkModeToggle />
-          </div>
-
-          {/* Buttons - Stacked on mobile, side by side on desktop */}
-          <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-3 sm:gap-4 mt-4 sm:mt-6">
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row items-center gap-3.5 sm:gap-4 w-full sm:w-auto pt-2">
             <a
               href={`${import.meta.env.BASE_URL}Danie Glenn Sapdaan Jr. - Resume.pdf`}
               download="Danie_Glenn_Sapdaan_Jr_Resume.pdf"
-              className="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 bg-black dark:bg-white text-white dark:text-black rounded-lg hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors flex items-center justify-center gap-2 font-medium text-xs sm:text-sm md:text-base"
+              className="w-full sm:w-auto px-7 py-3.5 bg-gray-900 hover:bg-black dark:bg-white dark:hover:bg-gray-100 text-white dark:text-gray-900 rounded-xl font-bold text-sm sm:text-base transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 flex items-center justify-center gap-2.5 group cursor-pointer"
             >
-              <Download size={16} className="sm:w-[18px] sm:h-[18px]" />
+              <Download size={18} className="group-hover:translate-y-0.5 transition-transform" />
               Download Resume
             </a>
 
             <button
               onClick={handleEmailClick}
-              className="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 font-medium text-xs sm:text-sm md:text-base"
+              className="w-full sm:w-auto px-7 py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-sm sm:text-base transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 flex items-center justify-center gap-2.5 cursor-pointer"
             >
-              <Mail size={16} className="sm:w-[18px] sm:h-[18px]" />
+              <Mail size={18} />
               Send Email
             </button>
           </div>
+
+          {/* Mobile Dark Mode Toggle */}
+          <div className="lg:hidden pt-2">
+            <DarkModeToggle />
+          </div>
+
+          {/* Connect Section (RyHar inspired clean bordered icon row) */}
+          <div className="pt-6 border-t border-gray-200 dark:border-gray-800/80 w-full max-w-lg">
+            <span className="text-xs uppercase tracking-widest font-bold text-gray-400 dark:text-gray-500 mb-3 block">
+              Connect
+            </span>
+            <div className="flex items-center justify-center lg:justify-start gap-3">
+              <a
+                href="https://github.com/unsatisfieDg"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub Profile"
+                className="p-3 rounded-xl border border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-gray-900/60 text-gray-700 dark:text-gray-300 hover:text-white hover:bg-gray-900 dark:hover:bg-white dark:hover:text-gray-900 hover:border-transparent transition-all duration-300 shadow-sm hover:scale-105"
+              >
+                <Github size={20} />
+              </a>
+
+              <button
+                onClick={handleEmailClick}
+                aria-label="Send Email"
+                className="p-3 rounded-xl border border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-gray-900/60 text-gray-700 dark:text-gray-300 hover:text-white hover:bg-blue-600 dark:hover:bg-blue-600 dark:hover:text-white hover:border-transparent transition-all duration-300 shadow-sm hover:scale-105 cursor-pointer"
+              >
+                <Mail size={20} />
+              </button>
+
+              <div className="px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-gray-900/60 text-gray-600 dark:text-gray-400 text-xs font-semibold flex items-center gap-2 shadow-sm">
+                <Sparkles size={14} className="text-amber-500" />
+                <span>BSIT &apos;25 Graduate</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Column: Profile Image + Floating Badges */}
+        <div className="lg:col-span-5 flex flex-col items-center justify-center relative mt-6 lg:mt-0">
+          
+          {/* Glow backdrop behind photo */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 via-teal-500/20 to-indigo-500/20 rounded-full scale-125 blur-3xl opacity-70 pointer-events-none"></div>
+
+          {/* Profile Card Container with interactive hover/tap dual photo */}
+          <div className="relative z-10 p-3 bg-white/80 dark:bg-gray-900/80 border border-gray-200 dark:border-gray-800 rounded-3xl shadow-2xl backdrop-blur-sm">
+            <div
+              className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-2xl overflow-hidden cursor-pointer select-none touch-manipulation group"
+              onMouseEnter={() => !isTapped && setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              onPointerDown={handleTap}
+              role="button"
+              tabIndex={0}
+              aria-label="Tap to toggle profile photo"
+            >
+              <img
+                src={`${import.meta.env.BASE_URL}profile.jpg`}
+                alt="Danie Glenn Sapdaan Jr."
+                className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 pointer-events-none group-hover:scale-105 ${
+                  showAlternateImage ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
+                }`}
+              />
+              <img
+                src={`${import.meta.env.BASE_URL}profile-hover.jpg`}
+                alt="Danie Glenn Sapdaan Jr. - Alternate"
+                className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 pointer-events-none group-hover:scale-105 ${
+                  showAlternateImage ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                }`}
+              />
+
+              {/* Photo corner hint */}
+              <div className="absolute bottom-2 right-2 px-2 py-0.5 rounded-md bg-black/60 backdrop-blur-md text-[10px] text-white/90 font-medium pointer-events-none">
+                {showAlternateImage ? "Alternate" : "Hover / Tap"}
+              </div>
+            </div>
+          </div>
+
+          {/* Floating Badges (RyHar-inspired floating information cards) */}
+          <div className="hidden sm:block absolute -top-4 -left-6 md:-left-10 z-20 floating">
+            <div className="flex items-center gap-3 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border border-gray-200 dark:border-gray-700/80 p-3 pr-5 rounded-2xl shadow-xl hover:-translate-y-1 transition-transform">
+              <div className="bg-blue-600 text-white p-2 rounded-xl shadow-sm">
+                <GraduationCap size={20} />
+              </div>
+              <div className="text-left">
+                <p className="text-xs font-bold text-gray-900 dark:text-white whitespace-nowrap">BSIT Graduate &apos;25</p>
+                <p className="text-[10px] font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">Univ. of Northern Philippines</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="hidden sm:block absolute -bottom-6 -left-6 md:-left-8 z-20 floating-delayed">
+            <div className="flex items-center gap-3 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border border-gray-200 dark:border-gray-700/80 p-3 pr-5 rounded-2xl shadow-xl hover:-translate-y-1 transition-transform">
+              <div className="bg-teal-600 text-white p-2 rounded-xl shadow-sm">
+                <Code2 size={20} />
+              </div>
+              <div className="text-left">
+                <p className="text-xs font-bold text-gray-900 dark:text-white whitespace-nowrap">Front End &amp; Mobile</p>
+                <p className="text-[10px] font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">React Native • JS • Python</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="hidden sm:block absolute -bottom-2 -right-4 md:-right-8 z-20 floating">
+            <div className="flex items-center gap-3 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border border-gray-200 dark:border-gray-700/80 p-3 pr-5 rounded-2xl shadow-xl hover:-translate-y-1 transition-transform">
+              <div className="bg-indigo-600 text-white p-2 rounded-xl shadow-sm">
+                <Cpu size={20} />
+              </div>
+              <div className="text-left">
+                <p className="text-xs font-bold text-gray-900 dark:text-white whitespace-nowrap">AI Integration</p>
+                <p className="text-[10px] font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">IBM &amp; AWS Certified</p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll Down Indicator */}
       <button
         onClick={scrollToContent}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors cursor-pointer group"
+        aria-label="Scroll down"
+        className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors cursor-pointer group"
       >
-        <div className="relative w-7 h-11 border-2 border-gray-600 dark:border-gray-400 group-hover:border-gray-900 dark:group-hover:border-gray-100 rounded-full transition-colors">
-          <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-1.5 h-2.5 bg-gray-600 dark:bg-gray-400 group-hover:bg-gray-900 dark:group-hover:bg-gray-100 rounded-full animate-scroll-wheel"></div>
+        <span className="text-[10px] uppercase tracking-widest font-semibold opacity-70 group-hover:opacity-100 transition-opacity">
+          Scroll
+        </span>
+        <div className="w-5 h-9 border-2 border-gray-400 dark:border-gray-600 group-hover:border-blue-500 rounded-full flex justify-center pt-1.5 transition-colors">
+          <div className="w-1 h-2 bg-gray-500 dark:bg-gray-400 group-hover:bg-blue-500 rounded-full animate-bounce"></div>
         </div>
       </button>
-
-      {/* Animations */}
-      <style>{`
-        @keyframes scroll-wheel {
-          0% {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-          }
-          100% {
-            opacity: 0;
-            transform: translateX(-50%) translateY(12px);
-          }
-        }
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-scroll-wheel {
-          animation: scroll-wheel 1.5s ease-in-out infinite;
-        }
-        .animate-fadeIn {
-          animation: fadeIn 1.2s ease-out;
-        }
-      `}</style>
     </section>
   );
 }

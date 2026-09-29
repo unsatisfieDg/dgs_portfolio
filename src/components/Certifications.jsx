@@ -56,17 +56,20 @@ export default function Certifications() {
   const displayedCertifications = certifications.slice(0, 4);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 sm:p-6">
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
-          Certifications
-        </h2>
+    <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-2xl border border-gray-200 dark:border-gray-800 p-6 sm:p-7 shadow-sm">
+      <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100 dark:border-gray-800/80">
+        <div>
+          <span className="text-[11px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Credentials</span>
+          <h2 className="text-xl sm:text-2xl font-black text-gray-900 dark:text-white tracking-tight flex items-center gap-2">
+            Certifications
+          </h2>
+        </div>
         {certifications.length > 4 && (
           <Link 
             to="/certifications"
-            className="text-xs sm:text-sm text-blue-600 dark:text-blue-400 hover:underline font-medium"
+            className="text-xs sm:text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-bold transition-colors"
           >
-            View All
+            View All ({certifications.length})
           </Link>
         )}
       </div>

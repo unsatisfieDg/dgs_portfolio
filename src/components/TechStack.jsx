@@ -32,14 +32,17 @@ export default function TechStack() {
   const innerOrbit = [...techStack.devtools];
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 sm:p-5 md:p-6 overflow-hidden relative">
+    <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-2xl border border-gray-200 dark:border-gray-800 p-6 sm:p-7 shadow-sm overflow-hidden relative">
       {/* Content Container */}
       <div className="relative z-10 flex items-start justify-between gap-6 sm:gap-8">
         {/* Left Side - Text */}
         <div className="max-w-md">
-          <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 flex items-center gap-2">
-            <span>💻</span> Tech Stack
-          </h2>
+          <div className="mb-3">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Toolkit</span>
+            <h2 className="text-xl sm:text-2xl font-black text-gray-900 dark:text-white tracking-tight flex items-center gap-2">
+              Tech Stack &amp; Tools
+            </h2>
+          </div>
           <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm leading-relaxed">
             I design and develop user-friendly web applications, intuitive UIs, and software applications with these modern tools.
           </p>

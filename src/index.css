@@ -47,3 +47,57 @@
     scrollbar-width: none;
   }
 }
+
+/* ✨ Cursor Blink Animation */
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+
+.animate-cursor {
+  animation: blink 1.2s infinite;
+}
+
+/* 🎈 Gentle Floating Badges */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes float-delayed {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.floating {
+  animation: float 4s ease-in-out infinite;
+}
+
+.floating-delayed {
+  animation: float-delayed 4.5s ease-in-out infinite 1.5s;
+}
+
+/* 🔄 Infinite Marquee Ticker */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* ⚡ Ambient Background Glow */
+.ambient-glow {
+  background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.15), transparent 70%);
+}
+.dark .ambient-glow {
+  background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.12), transparent 70%);
+}
+
