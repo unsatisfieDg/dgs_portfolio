@@ -356,9 +356,9 @@ export default function TechStack() {
               e.currentTarget.style.boxShadow = "0 2px 10px -2px rgba(0, 0, 0, 0.03)";
             }}
           >
-            {/* Card Header: Icon & Level */}
-            <div className="flex items-start justify-between gap-2 mb-3">
-              <div className="w-11 h-11 rounded-lg bg-gray-50 dark:bg-gray-800/90 border border-gray-100 dark:border-gray-700/80 flex items-center justify-center p-2 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+            {/* Card Content: Icon, Title & Category */}
+            <div>
+              <div className="w-12 h-12 rounded-xl bg-gray-50 dark:bg-gray-800/90 border border-gray-100 dark:border-gray-700/80 flex items-center justify-center p-2.5 mb-3.5 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
                 <img
                   src={tech.logo}
                   alt={tech.name}
@@ -366,35 +366,17 @@ export default function TechStack() {
                   loading="lazy"
                 />
               </div>
-              <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 border border-gray-200/50 dark:border-gray-700/50">
-                {tech.level}
-              </span>
-            </div>
 
-            {/* Title & Category */}
-            <div>
-              <h3 className="font-bold text-sm text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors flex items-center gap-1">
-                <span>{tech.name}</span>
+              <h3 className="font-bold text-sm text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                {tech.name}
               </h3>
-              <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5 line-clamp-1">
+              <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">
                 {tech.categoryName}
               </p>
-            </div>
-
-            {/* Hover Indicator Footer */}
-            <div className="mt-3 pt-2.5 border-t border-gray-100 dark:border-gray-800/80 flex items-center justify-between text-[10px] text-gray-400 dark:text-gray-500">
-              <span className="flex items-center gap-1 group-hover:text-blue-500 transition-colors">
-                <CheckCircle2 size={11} className="text-emerald-500" />
-                {tech.years}
-              </span>
-              <span className="opacity-0 group-hover:opacity-100 transition-opacity text-blue-600 dark:text-blue-400 font-semibold flex items-center gap-0.5">
-                Details &rarr;
-              </span>
             </div>
           </div>
         ))}
       </div>
-
 
       {/* Tech Detail Interactive Modal */}
       {selectedTech && (
@@ -423,14 +405,6 @@ export default function TechStack() {
                 <h3 className="text-xl font-black text-gray-900 dark:text-white">
                   {selectedTech.name}
                 </h3>
-                <div className="flex items-center gap-2 mt-1">
-                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300">
-                    {selectedTech.level}
-                  </span>
-                  <span className="text-[10px] text-gray-500 dark:text-gray-400">
-                    Experience: {selectedTech.years}
-                  </span>
-                </div>
               </div>
             </div>
 
