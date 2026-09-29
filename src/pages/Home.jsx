@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Hero from '../components/Hero';
-import MarqueeTicker from '../components/MarqueeTicker';
 import About from '../components/About';
 import TechStack from '../components/TechStack';
 import Projects from '../components/Projects';
@@ -101,11 +100,6 @@ export default function Home() {
         }}
       >
         <Hero />
-      </div>
-
-      {/* Kinetic Marquee Ticker (RyHar inspired) */}
-      <div className="relative z-20 w-full">
-        <MarqueeTicker />
       </div>
 
       {/* Main Content - max-w-7xl canvas */}
