@@ -7,62 +7,17 @@ import {
   Search, 
   Sparkles, 
   X, 
-  ExternalLink,
-  Layers,
   CheckCircle2
 } from "lucide-react";
 
 export default function TechStack() {
-  const [activeCategory, setActiveCategory] = useState("all");
+  const [activeCategory, setActiveCategory] = useState("frontend");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTech, setSelectedTech] = useState(null);
 
+  // Exact tech stack from Danie's original portfolio (Photo 1)
   const allTech = [
     // Frontend
-    {
-      name: "React.js",
-      category: "frontend",
-      categoryName: "Frontend",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-      glowColor: "rgba(97, 218, 251, 0.35)",
-      borderColor: "group-hover:border-cyan-500/50",
-      level: "Advanced",
-      years: "2+ Years",
-      desc: "Building dynamic, component-driven Single Page Applications (SPAs) with modern React hooks & state management."
-    },
-    {
-      name: "Next.js",
-      category: "frontend",
-      categoryName: "Frontend",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
-      glowColor: "rgba(150, 150, 150, 0.35)",
-      borderColor: "group-hover:border-gray-500/50",
-      level: "Proficient",
-      years: "1+ Year",
-      desc: "Fullstack React framework for SSR, static site generation (SSG), routing, and optimized web performance."
-    },
-    {
-      name: "Tailwind CSS",
-      category: "frontend",
-      categoryName: "Frontend",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
-      glowColor: "rgba(56, 189, 248, 0.35)",
-      borderColor: "group-hover:border-sky-400/50",
-      level: "Advanced",
-      years: "2+ Years",
-      desc: "Utility-first CSS framework for crafting responsive, modern, dark-mode ready user interfaces with zero clutter."
-    },
-    {
-      name: "JavaScript",
-      category: "frontend",
-      categoryName: "Frontend",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-      glowColor: "rgba(247, 223, 30, 0.35)",
-      borderColor: "group-hover:border-yellow-400/50",
-      level: "Advanced",
-      years: "3+ Years",
-      desc: "Core web language — ES6+, async/await, promises, DOM manipulation, functional programming & Web APIs."
-    },
     {
       name: "HTML5",
       category: "frontend",
@@ -72,7 +27,7 @@ export default function TechStack() {
       borderColor: "group-hover:border-orange-500/50",
       level: "Advanced",
       years: "3+ Years",
-      desc: "Semantic HTML structure, accessibility standards (WCAG), SEO metadata optimization & audio/video media."
+      desc: "Semantic HTML structure, accessibility standards (WCAG), SEO metadata optimization & web standards."
     },
     {
       name: "CSS3",
@@ -83,7 +38,18 @@ export default function TechStack() {
       borderColor: "group-hover:border-blue-500/50",
       level: "Advanced",
       years: "3+ Years",
-      desc: "Advanced layout math (Flexbox, CSS Grid), keyframe animations, glassmorphism effects & custom variables."
+      desc: "Advanced layout math (Flexbox, CSS Grid), keyframe animations, glassmorphism effects & custom styling."
+    },
+    {
+      name: "JavaScript",
+      category: "frontend",
+      categoryName: "Frontend",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+      glowColor: "rgba(247, 223, 30, 0.35)",
+      borderColor: "group-hover:border-yellow-400/50",
+      level: "Advanced",
+      years: "3+ Years",
+      desc: "Core web language — ES6+, async/await, DOM manipulation, functional programming & Web APIs."
     },
     {
       name: "Vue.js",
@@ -94,7 +60,29 @@ export default function TechStack() {
       borderColor: "group-hover:border-emerald-500/50",
       level: "Proficient",
       years: "1+ Year",
-      desc: "Progressive JavaScript framework for building clean reactive user interfaces with reactive data binding."
+      desc: "Progressive JavaScript framework for building clean reactive user interfaces and single-page apps."
+    },
+    {
+      name: "React Native",
+      category: "frontend",
+      categoryName: "Frontend",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      glowColor: "rgba(97, 218, 251, 0.35)",
+      borderColor: "group-hover:border-cyan-500/50",
+      level: "Proficient",
+      years: "1+ Year",
+      desc: "Cross-platform mobile application development framework using React components."
+    },
+    {
+      name: "Tailwind CSS",
+      category: "frontend",
+      categoryName: "Frontend",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+      glowColor: "rgba(56, 189, 248, 0.35)",
+      borderColor: "group-hover:border-sky-400/50",
+      level: "Advanced",
+      years: "2+ Years",
+      desc: "Utility-first CSS framework for crafting responsive, modern, dark-mode ready user interfaces."
     },
     {
       name: "Vite",
@@ -105,7 +93,7 @@ export default function TechStack() {
       borderColor: "group-hover:border-indigo-500/50",
       level: "Advanced",
       years: "2+ Years",
-      desc: "Next-generation frontend tooling providing lightning-fast HMR (Hot Module Replacement) and optimized builds."
+      desc: "Next-generation frontend tooling providing lightning-fast HMR and optimized production bundling."
     },
 
     // Backend
@@ -118,18 +106,7 @@ export default function TechStack() {
       borderColor: "group-hover:border-green-500/50",
       level: "Advanced",
       years: "2+ Years",
-      desc: "Asynchronous event-driven JavaScript runtime environment for backend development and server scripts."
-    },
-    {
-      name: "Express.js",
-      category: "backend",
-      categoryName: "Backend",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
-      glowColor: "rgba(130, 130, 130, 0.35)",
-      borderColor: "group-hover:border-gray-400/50",
-      level: "Advanced",
-      years: "2+ Years",
-      desc: "Fast, unopinionated, minimalist web framework for Node.js REST API creation and middleware routing."
+      desc: "Asynchronous event-driven JavaScript runtime environment for backend development and APIs."
     },
     {
       name: "Python",
@@ -140,7 +117,7 @@ export default function TechStack() {
       borderColor: "group-hover:border-blue-600/50",
       level: "Proficient",
       years: "2+ Years",
-      desc: "Scripting, algorithm implementation, data analysis, automation, and backend backend scripting."
+      desc: "Scripting, algorithm implementation, data processing, backend automation, and software logic."
     },
     {
       name: "PHP",
@@ -153,80 +130,36 @@ export default function TechStack() {
       years: "2+ Years",
       desc: "Server-side web scripting language powering dynamic database-driven web applications."
     },
-    {
-      name: "Laravel",
-      category: "backend",
-      categoryName: "Backend",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg",
-      glowColor: "rgba(255, 45, 32, 0.35)",
-      borderColor: "group-hover:border-red-500/50",
-      level: "Proficient",
-      years: "1+ Year",
-      desc: "Elegant PHP web framework with Eloquent ORM, built-in authentication, Blade templating & routing."
-    },
-    {
-      name: "Go (Golang)",
-      category: "backend",
-      categoryName: "Backend",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-official.svg",
-      glowColor: "rgba(0, 173, 216, 0.35)",
-      borderColor: "group-hover:border-cyan-400/50",
-      level: "Learning",
-      years: "< 1 Year",
-      desc: "High-performance statically-typed programming language optimized for concurrent microservices."
-    },
 
     // Databases
     {
       name: "MySQL",
       category: "databases",
-      categoryName: "Databases & ORM",
+      categoryName: "Databases",
       logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
       glowColor: "rgba(68, 121, 161, 0.35)",
       borderColor: "group-hover:border-blue-500/50",
       level: "Advanced",
       years: "2+ Years",
-      desc: "Relational database management system (RDBMS) for structured data storage, joins & indexing."
-    },
-    {
-      name: "PostgreSQL",
-      category: "databases",
-      categoryName: "Databases & ORM",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
-      glowColor: "rgba(65, 105, 225, 0.35)",
-      borderColor: "group-hover:border-blue-600/50",
-      level: "Proficient",
-      years: "1+ Year",
-      desc: "Advanced open-source object-relational database with strong JSON support & transaction isolation."
-    },
-    {
-      name: "MongoDB",
-      category: "databases",
-      categoryName: "Databases & ORM",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
-      glowColor: "rgba(71, 162, 72, 0.35)",
-      borderColor: "group-hover:border-green-600/50",
-      level: "Proficient",
-      years: "1+ Year",
-      desc: "NoSQL document-oriented database for flexible JSON-like data schema storage."
+      desc: "Relational database management system (RDBMS) for structured data storage, queries & schema design."
     },
     {
       name: "SQLite",
       category: "databases",
-      categoryName: "Databases & ORM",
+      categoryName: "Databases",
       logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg",
       glowColor: "rgba(0, 59, 87, 0.35)",
       borderColor: "group-hover:border-sky-700/50",
       level: "Advanced",
       years: "2+ Years",
-      desc: "Self-contained, serverless relational database engine used for mobile & local storage."
+      desc: "Self-contained, serverless relational database engine used for embedded & local storage."
     },
 
-    // Tools & Infrastructure
+    // DevTools & Infrastructure
     {
       name: "Git",
-      category: "tools",
-      categoryName: "Tools & Infrastructure",
+      category: "devtools",
+      categoryName: "Dev Tools",
       logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
       glowColor: "rgba(240, 80, 50, 0.35)",
       borderColor: "group-hover:border-orange-600/50",
@@ -236,41 +169,30 @@ export default function TechStack() {
     },
     {
       name: "GitHub",
-      category: "tools",
-      categoryName: "Tools & Infrastructure",
+      category: "devtools",
+      categoryName: "Dev Tools",
       logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
       glowColor: "rgba(110, 84, 148, 0.35)",
       borderColor: "group-hover:border-purple-500/50",
       level: "Advanced",
       years: "3+ Years",
-      desc: "Cloud repository platform for team collaboration, code reviews, releases, and CI/CD deployment."
-    },
-    {
-      name: "Docker",
-      category: "tools",
-      categoryName: "Tools & Infrastructure",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
-      glowColor: "rgba(36, 150, 237, 0.35)",
-      borderColor: "group-hover:border-blue-400/50",
-      level: "Proficient",
-      years: "1+ Year",
-      desc: "Platform for building, shipping, and running applications inside lightweight containers."
+      desc: "Cloud repository platform for code hosting, version control, collaboration & project workflow."
     },
     {
       name: "VS Code",
-      category: "tools",
-      categoryName: "Tools & Infrastructure",
+      category: "devtools",
+      categoryName: "Dev Tools",
       logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
       glowColor: "rgba(0, 122, 204, 0.35)",
       borderColor: "group-hover:border-blue-500/50",
       level: "Advanced",
       years: "3+ Years",
-      desc: "Feature-rich code editor customized with debugging tools, extensions & productivity shortcuts."
+      desc: "Primary IDE customized with debugging tools, extensions & productivity shortcuts."
     },
     {
       name: "Figma",
-      category: "tools",
-      categoryName: "Tools & Infrastructure",
+      category: "devtools",
+      categoryName: "Dev Tools",
       logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
       glowColor: "rgba(242, 78, 30, 0.35)",
       borderColor: "group-hover:border-pink-500/50",
@@ -279,47 +201,47 @@ export default function TechStack() {
       desc: "Collaborative interface design tool for crafting UI wireframes, high-fidelity mockups, and prototypes."
     },
     {
-      name: "Postman",
-      category: "tools",
-      categoryName: "Tools & Infrastructure",
-      logo: "https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg",
-      glowColor: "rgba(255, 108, 55, 0.35)",
+      name: "Blender",
+      category: "devtools",
+      categoryName: "Dev Tools",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/blender/blender-original.svg",
+      glowColor: "rgba(234, 125, 30, 0.35)",
       borderColor: "group-hover:border-orange-500/50",
-      level: "Advanced",
-      years: "2+ Years",
-      desc: "API platform for designing, testing, mocking, and documenting RESTful HTTP endpoints."
+      level: "Proficient",
+      years: "1+ Year",
+      desc: "3D computer graphics software toolset used for creating 3D models and visual assets."
     },
     {
-      name: "Linux",
-      category: "tools",
-      categoryName: "Tools & Infrastructure",
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg",
-      glowColor: "rgba(252, 198, 36, 0.35)",
-      borderColor: "group-hover:border-amber-400/50",
+      name: "Discord",
+      category: "devtools",
+      categoryName: "Dev Tools",
+      logo: "https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png",
+      glowColor: "rgba(88, 101, 242, 0.35)",
+      borderColor: "group-hover:border-indigo-500/50",
       level: "Proficient",
-      years: "2+ Years",
-      desc: "Unix-like operating system command line (Bash), file permissions, and environment configurations."
+      years: "3+ Years",
+      desc: "Developer community collaboration, server integration & real-time team communication."
     }
   ];
 
+  // Categories list without "All Skills"
   const categories = [
-    { id: "all", label: "All Skills", icon: Layers, count: allTech.length },
     { id: "frontend", label: "Frontend", icon: Code2, count: allTech.filter(t => t.category === "frontend").length },
     { id: "backend", label: "Backend", icon: Server, count: allTech.filter(t => t.category === "backend").length },
-    { id: "databases", label: "Databases & ORM", icon: Database, count: allTech.filter(t => t.category === "databases").length },
-    { id: "tools", label: "Tools & Infra", icon: Wrench, count: allTech.filter(t => t.category === "tools").length }
+    { id: "databases", label: "Databases", icon: Database, count: allTech.filter(t => t.category === "databases").length },
+    { id: "devtools", label: "Dev Tools", icon: Wrench, count: allTech.filter(t => t.category === "devtools").length }
   ];
 
   const filteredTech = allTech.filter((tech) => {
-    const matchesCategory = activeCategory === "all" || tech.category === activeCategory;
+    const matchesCategory = tech.category === activeCategory;
     const matchesSearch = tech.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           tech.categoryName.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           tech.desc.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
-  const outerOrbit = allTech.filter(t => t.category === "frontend" || t.category === "backend").slice(0, 8);
-  const innerOrbit = allTech.filter(t => t.category === "tools" || t.category === "databases").slice(0, 6);
+  const outerOrbit = allTech.filter(t => t.category === "frontend" || t.category === "backend");
+  const innerOrbit = allTech.filter(t => t.category === "devtools" || t.category === "databases");
 
   return (
     <div className="space-y-6">
@@ -332,25 +254,25 @@ export default function TechStack() {
           <div className="max-w-xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800/60 text-blue-600 dark:text-blue-400 text-xs font-semibold mb-3">
               <Sparkles size={13} className="animate-pulse" />
-              <span>INTERACTIVE TOOLKIT</span>
+              <span>TOOLKIT</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-gray-900 dark:text-white tracking-tight">
               Tech Stack &amp; Tools
             </h2>
             <p className="mt-2 text-gray-600 dark:text-gray-400 text-xs sm:text-sm leading-relaxed">
-              I design and develop user-friendly web applications, intuitive UIs, and robust backend services using these modern technologies. Click any card below for details!
+              I design and develop user-friendly web applications, intuitive UIs, and software applications with these modern tools.
             </p>
 
             {/* Quick stats pills */}
             <div className="flex flex-wrap gap-2.5 mt-4">
               <span className="text-[11px] font-semibold px-2.5 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200/80 dark:border-gray-700/80">
-                ⚡ 20+ Technologies
+                ⚡ 18 Core Technologies
               </span>
               <span className="text-[11px] font-semibold px-2.5 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200/80 dark:border-gray-700/80">
-                🚀 Fullstack Capable
+                🎨 Frontend &amp; Backend
               </span>
               <span className="text-[11px] font-semibold px-2.5 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200/80 dark:border-gray-700/80">
-                🛠️ Modern Tooling
+                🛠️ Modern Developer Tools
               </span>
             </div>
           </div>
@@ -394,8 +316,8 @@ export default function TechStack() {
 
       {/* Controls Bar: Category Tabs & Search Bar */}
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
-        {/* Category Tabs */}
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
+        {/* Category Tabs (No "All Skills") */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
           {categories.map((cat) => {
             const Icon = cat.icon;
             const isActive = activeCategory === cat.id;
@@ -403,7 +325,7 @@ export default function TechStack() {
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 ${
                   isActive
                     ? "bg-gray-900 dark:bg-white text-white dark:text-gray-900 shadow-md shadow-gray-900/10 scale-[1.02]"
                     : "bg-white/80 dark:bg-gray-900/80 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800/80 border border-gray-200/80 dark:border-gray-800"
@@ -462,7 +384,7 @@ export default function TechStack() {
                 e.currentTarget.style.boxShadow = "0 2px 10px -2px rgba(0, 0, 0, 0.03)";
               }}
             >
-              {/* Card Header: Icon & Category */}
+              {/* Card Header: Icon & Level */}
               <div className="flex items-start justify-between gap-2 mb-3">
                 <div className="w-11 h-11 rounded-lg bg-gray-50 dark:bg-gray-800/90 border border-gray-100 dark:border-gray-700/80 flex items-center justify-center p-2 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
                   <img
@@ -504,19 +426,19 @@ export default function TechStack() {
         <div className="text-center py-12 bg-white/50 dark:bg-gray-900/50 rounded-2xl border border-dashed border-gray-300 dark:border-gray-800">
           <Search size={32} className="mx-auto text-gray-400 mb-3" />
           <h4 className="text-sm font-bold text-gray-800 dark:text-gray-200">No matching technologies found</h4>
-          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Try adjusting your search query or switching categories.</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Try searching for a different tool in this category.</p>
           <button
-            onClick={() => { setActiveCategory("all"); setSearchQuery(""); }}
+            onClick={() => { setSearchQuery(""); }}
             className="mt-4 px-4 py-1.5 text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/60 transition-colors"
           >
-            Reset Filters
+            Clear Search
           </button>
         </div>
       )}
 
       {/* Tech Detail Interactive Modal */}
       {selectedTech && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in" onClick={() => setSelectedTech(null)}>
           <div 
             className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 max-w-md w-full p-6 shadow-2xl relative animate-scale-up"
             onClick={(e) => e.stopPropagation()}
@@ -561,7 +483,7 @@ export default function TechStack() {
               <div className="bg-gray-50 dark:bg-gray-800/60 rounded-xl p-3 border border-gray-100 dark:border-gray-800 text-xs text-gray-600 dark:text-gray-400 space-y-1.5">
                 <span className="font-bold text-gray-900 dark:text-white block">Key Highlights &amp; Use Cases:</span>
                 <ul className="list-disc list-inside space-y-1">
-                  <li>Integrated across personal &amp; client portfolio projects</li>
+                  <li>Integrated across Danie's web &amp; mobile projects</li>
                   <li>Clean code standards &amp; optimal execution speed</li>
                   <li>Continuous learning &amp; best practice adoption</li>
                 </ul>
@@ -608,4 +530,5 @@ export default function TechStack() {
       }} />
     </div>
   );
-}
+}
+
