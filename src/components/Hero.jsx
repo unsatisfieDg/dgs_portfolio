@@ -88,7 +88,7 @@ export default function Hero() {
           <div className="space-y-2">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-gray-900 dark:text-white tracking-tighter leading-[1.08]">
               Hi, I&apos;m{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-teal-500 to-indigo-600 dark:from-blue-400 dark:via-teal-300 dark:to-indigo-300">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-gray-700 to-gray-400 dark:from-white dark:via-gray-300 dark:to-gray-500">
                 Danie Glenn
               </span>
             </h1>
@@ -98,7 +98,7 @@ export default function Hero() {
               <span className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-200 tracking-tight">
                 {roles[roleIndex % roles.length].substring(0, subIndex)}
               </span>
-              <span className="animate-cursor text-blue-600 dark:text-blue-400 text-2xl sm:text-3xl font-light ml-0.5">
+              <span className="animate-cursor text-gray-500 dark:text-gray-400 text-2xl sm:text-3xl font-light ml-0.5">
                 |
               </span>
             </div>
