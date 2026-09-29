@@ -12,7 +12,6 @@ import {
 
 export default function TechStack() {
   const [activeCategory, setActiveCategory] = useState("frontend");
-  const [searchQuery, setSearchQuery] = useState("");
   const [selectedTech, setSelectedTech] = useState(null);
 
   // Exact tech stack from Danie's original portfolio (Photo 1)
@@ -232,13 +231,7 @@ export default function TechStack() {
     { id: "devtools", label: "Dev Tools", icon: Wrench, count: allTech.filter(t => t.category === "devtools").length }
   ];
 
-  const filteredTech = allTech.filter((tech) => {
-    const matchesCategory = tech.category === activeCategory;
-    const matchesSearch = tech.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          tech.categoryName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          tech.desc.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
+  const filteredTech = allTech.filter((tech) => tech.category === activeCategory);
 
   const outerOrbit = allTech.filter(t => t.category === "frontend" || t.category === "backend");
   const innerOrbit = allTech.filter(t => t.category === "devtools" || t.category === "databases");
@@ -277,16 +270,16 @@ export default function TechStack() {
             </div>
           </div>
 
-          {/* Right side - Orbital animation (Desktop) */}
-          <div className="hidden lg:block relative flex-shrink-0" style={{ width: '220px', height: '180px' }}>
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-64 h-64">
+          {/* Right side - Orbital animation cut by half (Desktop) */}
+          <div className="hidden lg:block relative flex-shrink-0 overflow-hidden" style={{ width: '240px', height: '260px' }}>
+            <div className="absolute -right-28 top-1/2 -translate-y-1/2 w-72 h-72">
               {outerOrbit.map((tech, index) => (
                 <div
                   key={tech.name}
                   className="absolute top-1/2 left-1/2"
                   style={{
-                    animation: `orbit 26s linear infinite`,
-                    animationDelay: `${-(index / outerOrbit.length) * 26}s`,
+                    animation: `orbit 25s linear infinite`,
+                    animationDelay: `${-(index / outerOrbit.length) * 25}s`,
                   }}
                 >
                   <div className="p-2 rounded-xl bg-white dark:bg-gray-800 shadow-md border border-gray-100 dark:border-gray-700 hover:scale-125 transition-transform duration-300 cursor-pointer" title={tech.name}>
@@ -300,8 +293,8 @@ export default function TechStack() {
                   key={tech.name}
                   className="absolute top-1/2 left-1/2"
                   style={{
-                    animation: `innerOrbit 16s linear infinite`,
-                    animationDelay: `${-(index / innerOrbit.length) * 16}s`,
+                    animation: `innerOrbit 15s linear infinite`,
+                    animationDelay: `${-(index / innerOrbit.length) * 15}s`,
                   }}
                 >
                   <div className="p-1.5 rounded-lg bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700 hover:scale-125 transition-transform duration-300 cursor-pointer" title={tech.name}>
@@ -314,10 +307,10 @@ export default function TechStack() {
         </div>
       </div>
 
-      {/* Controls Bar: Category Tabs & Search Bar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
-        {/* Category Tabs (No "All Skills") */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
+      {/* Controls Bar: Category Tabs */}
+      <div className="flex items-center justify-between gap-4">
+        {/* Category Tabs */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 scrollbar-none w-full">
           {categories.map((cat) => {
             const Icon = cat.icon;
             const isActive = activeCategory === cat.id;
@@ -325,7 +318,7 @@ export default function TechStack() {
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 ${
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 ${
                   isActive
                     ? "bg-gray-900 dark:bg-white text-white dark:text-gray-900 shadow-md shadow-gray-900/10 scale-[1.02]"
                     : "bg-white/80 dark:bg-gray-900/80 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800/80 border border-gray-200/80 dark:border-gray-800"
@@ -344,97 +337,64 @@ export default function TechStack() {
             );
           })}
         </div>
-
-        {/* Search input */}
-        <div className="relative w-full sm:w-64 flex-shrink-0">
-          <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
-          <input
-            type="text"
-            placeholder="Search technology..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-8 py-2 rounded-xl bg-white/80 dark:bg-gray-900/80 border border-gray-200 dark:border-gray-800 text-xs text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 transition-colors"
-          />
-          {searchQuery && (
-            <button 
-              onClick={() => setSearchQuery("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
-            >
-              <X size={14} />
-            </button>
-          )}
-        </div>
       </div>
 
       {/* Tech Cards Grid */}
-      {filteredTech.length > 0 ? (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3.5 sm:gap-4">
-          {filteredTech.map((tech) => (
-            <div
-              key={tech.name}
-              onClick={() => setSelectedTech(tech)}
-              className={`group relative bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-xl p-4 border border-gray-200/80 dark:border-gray-800/80 cursor-pointer transition-all duration-300 hover:-translate-y-1.5 ${tech.borderColor} hover:shadow-xl`}
-              style={{
-                boxShadow: "0 2px 10px -2px rgba(0, 0, 0, 0.03)"
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = `0 12px 28px -8px ${tech.glowColor}`;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = "0 2px 10px -2px rgba(0, 0, 0, 0.03)";
-              }}
-            >
-              {/* Card Header: Icon & Level */}
-              <div className="flex items-start justify-between gap-2 mb-3">
-                <div className="w-11 h-11 rounded-lg bg-gray-50 dark:bg-gray-800/90 border border-gray-100 dark:border-gray-700/80 flex items-center justify-center p-2 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
-                  <img
-                    src={tech.logo}
-                    alt={tech.name}
-                    className="w-full h-full object-contain filter drop-shadow-sm"
-                    loading="lazy"
-                  />
-                </div>
-                <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 border border-gray-200/50 dark:border-gray-700/50">
-                  {tech.level}
-                </span>
-              </div>
-
-              {/* Title & Category */}
-              <div>
-                <h3 className="font-bold text-sm text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors flex items-center gap-1">
-                  <span>{tech.name}</span>
-                </h3>
-                <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5 line-clamp-1">
-                  {tech.categoryName}
-                </p>
-              </div>
-
-              {/* Hover Indicator Footer */}
-              <div className="mt-3 pt-2.5 border-t border-gray-100 dark:border-gray-800/80 flex items-center justify-between text-[10px] text-gray-400 dark:text-gray-500">
-                <span className="flex items-center gap-1 group-hover:text-blue-500 transition-colors">
-                  <CheckCircle2 size={11} className="text-emerald-500" />
-                  {tech.years}
-                </span>
-                <span className="opacity-0 group-hover:opacity-100 transition-opacity text-blue-600 dark:text-blue-400 font-semibold flex items-center gap-0.5">
-                  Details &rarr;
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="text-center py-12 bg-white/50 dark:bg-gray-900/50 rounded-2xl border border-dashed border-gray-300 dark:border-gray-800">
-          <Search size={32} className="mx-auto text-gray-400 mb-3" />
-          <h4 className="text-sm font-bold text-gray-800 dark:text-gray-200">No matching technologies found</h4>
-          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Try searching for a different tool in this category.</p>
-          <button
-            onClick={() => { setSearchQuery(""); }}
-            className="mt-4 px-4 py-1.5 text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/60 transition-colors"
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3.5 sm:gap-4">
+        {filteredTech.map((tech) => (
+          <div
+            key={tech.name}
+            onClick={() => setSelectedTech(tech)}
+            className={`group relative bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-xl p-4 border border-gray-200/80 dark:border-gray-800/80 cursor-pointer transition-all duration-300 hover:-translate-y-1.5 ${tech.borderColor} hover:shadow-xl`}
+            style={{
+              boxShadow: "0 2px 10px -2px rgba(0, 0, 0, 0.03)"
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.boxShadow = `0 12px 28px -8px ${tech.glowColor}`;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.boxShadow = "0 2px 10px -2px rgba(0, 0, 0, 0.03)";
+            }}
           >
-            Clear Search
-          </button>
-        </div>
-      )}
+            {/* Card Header: Icon & Level */}
+            <div className="flex items-start justify-between gap-2 mb-3">
+              <div className="w-11 h-11 rounded-lg bg-gray-50 dark:bg-gray-800/90 border border-gray-100 dark:border-gray-700/80 flex items-center justify-center p-2 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                <img
+                  src={tech.logo}
+                  alt={tech.name}
+                  className="w-full h-full object-contain filter drop-shadow-sm"
+                  loading="lazy"
+                />
+              </div>
+              <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 border border-gray-200/50 dark:border-gray-700/50">
+                {tech.level}
+              </span>
+            </div>
+
+            {/* Title & Category */}
+            <div>
+              <h3 className="font-bold text-sm text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors flex items-center gap-1">
+                <span>{tech.name}</span>
+              </h3>
+              <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5 line-clamp-1">
+                {tech.categoryName}
+              </p>
+            </div>
+
+            {/* Hover Indicator Footer */}
+            <div className="mt-3 pt-2.5 border-t border-gray-100 dark:border-gray-800/80 flex items-center justify-between text-[10px] text-gray-400 dark:text-gray-500">
+              <span className="flex items-center gap-1 group-hover:text-blue-500 transition-colors">
+                <CheckCircle2 size={11} className="text-emerald-500" />
+                {tech.years}
+              </span>
+              <span className="opacity-0 group-hover:opacity-100 transition-opacity text-blue-600 dark:text-blue-400 font-semibold flex items-center gap-0.5">
+                Details &rarr;
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+
 
       {/* Tech Detail Interactive Modal */}
       {selectedTech && (
