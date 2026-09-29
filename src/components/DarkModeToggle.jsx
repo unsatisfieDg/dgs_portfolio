@@ -5,6 +5,7 @@ export default function DarkModeToggle() {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
+    // Check for saved preference or system preference
     const savedMode = localStorage.getItem('darkMode');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
@@ -28,10 +29,11 @@ export default function DarkModeToggle() {
       }
     };
 
-    // Circular View Transition API (Bryll Lim style expand effect)
+    // Circular View Transition API (Bryll Lim style expanding circle from click)
     if (document.startViewTransition) {
-      const x = event.clientX ?? window.innerWidth / 2;
-      const y = event.clientY ?? window.innerHeight / 2;
+      const rect = event.currentTarget.getBoundingClientRect();
+      const x = event.clientX || (rect.left + rect.width / 2);
+      const y = event.clientY || (rect.top + rect.height / 2);
       
       const endRadius = Math.hypot(
         Math.max(x, window.innerWidth - x),
@@ -43,21 +45,17 @@ export default function DarkModeToggle() {
       });
 
       transition.ready.then(() => {
-        const clipPath = [
-          `circle(0px at ${x}px ${y}px)`,
-          `circle(${endRadius}px at ${x}px ${y}px)`
-        ];
-
         document.documentElement.animate(
           {
-            clipPath: isDark ? clipPath : [...clipPath].reverse()
+            clipPath: [
+              `circle(0px at ${x}px ${y}px)`,
+              `circle(${endRadius}px at ${x}px ${y}px)`
+            ]
           },
           {
-            duration: 550,
+            duration: 600,
             easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
-            pseudoElement: isDark
-              ? '::view-transition-new(root)'
-              : '::view-transition-old(root)'
+            pseudoElement: '::view-transition-new(root)'
           }
         );
       });
@@ -69,27 +67,21 @@ export default function DarkModeToggle() {
   return (
     <button
       onClick={toggleDarkMode}
-      className={`relative inline-flex items-center h-8 w-14 sm:h-9 sm:w-16 rounded-full p-1 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 shadow-md ${
-        darkMode ? 'bg-gray-800 border border-gray-700' : 'bg-gray-200 border border-gray-300'
+      className={`relative inline-flex items-center h-7 w-12 sm:h-8 sm:w-14 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
+        darkMode ? 'bg-blue-600' : 'bg-gray-300'
       }`}
       aria-label="Toggle dark mode"
     >
-      {/* Background Icons */}
-      <div className="absolute inset-0 flex justify-between items-center px-2 pointer-events-none">
-        <Sun size={13} className="text-amber-500" />
-        <Moon size={13} className="text-blue-400" />
-      </div>
-
-      {/* Sliding Knob */}
+      {/* Toggle Circle Knob */}
       <span
-        className={`relative inline-block h-6 w-6 sm:h-7 sm:w-7 transform rounded-full bg-white dark:bg-gray-900 shadow-md transition-transform duration-300 flex items-center justify-center z-10 ${
-          darkMode ? 'translate-x-6 sm:translate-x-7' : 'translate-x-0'
+        className={`inline-block h-5 w-5 sm:h-6 sm:w-6 transform rounded-full bg-white shadow-lg transition-transform duration-300 flex items-center justify-center ${
+          darkMode ? 'translate-x-6 sm:translate-x-7' : 'translate-x-1'
         }`}
       >
         {darkMode ? (
-          <Moon size={14} className="text-blue-400" />
+          <Moon size={12} className="text-blue-600 sm:w-[14px] sm:h-[14px]" />
         ) : (
-          <Sun size={14} className="text-amber-500" />
+          <Sun size={12} className="text-yellow-500 sm:w-[14px] sm:h-[14px]" />
         )}
       </span>
     </button>
