@@ -211,14 +211,30 @@ export default function TechStack() {
       desc: "3D computer graphics software toolset used for creating 3D models and visual assets."
     },
     {
+      name: "Antigravity IDE",
+      category: "devtools",
+      categoryName: "Dev Tools",
+      logo: "https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a611345.svg",
+      glowColor: "rgba(99, 102, 241, 0.4)",
+      borderColor: "group-hover:border-indigo-500/50",
+      desc: "Advanced agentic AI coding environment engineered by Google DeepMind for pair programming, fullstack development & system automation."
+    },
+    {
+      name: "Claude Code",
+      category: "devtools",
+      categoryName: "Dev Tools",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/7/70/Anthropic_logo.svg",
+      glowColor: "rgba(217, 119, 6, 0.4)",
+      borderColor: "group-hover:border-amber-500/50",
+      desc: "Agentic AI coding tool for terminal workflows, autonomous refactoring, codebase search & rapid development."
+    },
+    {
       name: "Discord",
       category: "devtools",
       categoryName: "Dev Tools",
       logo: "https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png",
       glowColor: "rgba(88, 101, 242, 0.35)",
       borderColor: "group-hover:border-indigo-500/50",
-      level: "Proficient",
-      years: "3+ Years",
       desc: "Developer community collaboration, server integration & real-time team communication."
     }
   ];
@@ -259,7 +275,7 @@ export default function TechStack() {
             {/* Quick stats pills */}
             <div className="flex flex-wrap gap-2.5 mt-4">
               <span className="text-[11px] font-semibold px-2.5 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200/80 dark:border-gray-700/80">
-                ⚡ 18 Core Technologies
+                ⚡ 20 Core Technologies
               </span>
               <span className="text-[11px] font-semibold px-2.5 py-1 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200/80 dark:border-gray-700/80">
                 🎨 Frontend &amp; Backend
