@@ -171,6 +171,7 @@ export default function TechStack() {
       category: "devtools",
       categoryName: "Dev Tools",
       logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+      darkInvert: true,
       glowColor: "rgba(110, 84, 148, 0.35)",
       borderColor: "group-hover:border-purple-500/50",
       level: "Advanced",
@@ -214,7 +215,7 @@ export default function TechStack() {
       name: "Antigravity IDE",
       category: "devtools",
       categoryName: "Dev Tools",
-      logo: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><defs><linearGradient id='ag' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%236366F1'/><stop offset='50%25' stop-color='%23A855F7'/><stop offset='100%25' stop-color='%23EC4899'/></linearGradient></defs><path fill='url(%23ag)' d='M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z'/></svg>",
+      logo: `${import.meta.env.BASE_URL}antigravity.svg`,
       glowColor: "rgba(99, 102, 241, 0.4)",
       borderColor: "group-hover:border-indigo-500/50",
       desc: "Advanced agentic AI coding environment engineered by Google DeepMind for pair programming, fullstack development & system automation."
@@ -223,7 +224,7 @@ export default function TechStack() {
       name: "Claude Code",
       category: "devtools",
       categoryName: "Dev Tools",
-      logo: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23D97706' d='M12 1.5L14.7 9.3L22.5 12L14.7 14.7L12 22.5L9.3 14.7L1.5 12L9.3 9.3L12 1.5Z'/><path fill='%23F59E0B' d='M12 5.5L13.6 10.4L18.5 12L13.6 13.6L12 18.5L10.4 13.6L5.5 12L10.4 10.4L12 5.5Z'/></svg>",
+      logo: `${import.meta.env.BASE_URL}claude-code.svg`,
       glowColor: "rgba(217, 119, 6, 0.4)",
       borderColor: "group-hover:border-amber-500/50",
       desc: "Agentic AI coding tool for terminal workflows, autonomous refactoring, codebase search & rapid development."
@@ -287,7 +288,7 @@ export default function TechStack() {
           </div>
 
           {/* Right side - Orbital animation cut by half (Desktop) */}
-          <div className="hidden lg:block relative flex-shrink-0 overflow-hidden" style={{ width: '240px', height: '260px' }}>
+          <div className="hidden lg:block relative flex-shrink-0 overflow-hidden" style={{ width: '220px', height: '280px' }}>
             <div className="absolute -right-28 top-1/2 -translate-y-1/2 w-72 h-72">
               {outerOrbit.map((tech, index) => (
                 <div
@@ -299,7 +300,7 @@ export default function TechStack() {
                   }}
                 >
                   <div className="p-2 rounded-xl bg-white dark:bg-gray-800 shadow-md border border-gray-100 dark:border-gray-700 hover:scale-125 transition-transform duration-300 cursor-pointer" title={tech.name}>
-                    <img src={tech.logo} alt={tech.name} className="w-7 h-7 object-contain" />
+                    <img src={tech.logo} alt={tech.name} className={`w-7 h-7 object-contain ${tech.darkInvert ? 'dark:invert' : ''}`} />
                   </div>
                 </div>
               ))}
@@ -314,7 +315,7 @@ export default function TechStack() {
                   }}
                 >
                   <div className="p-1.5 rounded-lg bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700 hover:scale-125 transition-transform duration-300 cursor-pointer" title={tech.name}>
-                    <img src={tech.logo} alt={tech.name} className="w-5 h-5 object-contain" />
+                    <img src={tech.logo} alt={tech.name} className={`w-5 h-5 object-contain ${tech.darkInvert ? 'dark:invert' : ''}`} />
                   </div>
                 </div>
               ))}
@@ -378,7 +379,7 @@ export default function TechStack() {
                 <img
                   src={tech.logo}
                   alt={tech.name}
-                  className="w-full h-full object-contain filter drop-shadow-sm"
+                  className={`w-full h-full object-contain filter drop-shadow-sm ${tech.darkInvert ? 'dark:invert' : ''}`}
                   loading="lazy"
                 />
               </div>
@@ -412,7 +413,7 @@ export default function TechStack() {
             {/* Modal Header */}
             <div className="flex items-center gap-4 mb-4">
               <div className="w-14 h-14 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex items-center justify-center p-3 shadow-inner">
-                <img src={selectedTech.logo} alt={selectedTech.name} className="w-full h-full object-contain" />
+                <img src={selectedTech.logo} alt={selectedTech.name} className={`w-full h-full object-contain ${selectedTech.darkInvert ? 'dark:invert' : ''}`} />
               </div>
               <div>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
@@ -457,14 +458,14 @@ export default function TechStack() {
       <style dangerouslySetInnerHTML={{
         __html: `
         @keyframes orbit {
-          0% { transform: translate(-50%, -50%) rotate(0deg) translateX(110px) rotate(0deg); opacity: 0.8; }
+          0% { transform: translate(-50%, -50%) rotate(0deg) translateX(130px) rotate(0deg); opacity: 0.8; }
           50% { opacity: 1; }
-          100% { transform: translate(-50%, -50%) rotate(360deg) translateX(110px) rotate(-360deg); opacity: 0.8; }
+          100% { transform: translate(-50%, -50%) rotate(360deg) translateX(130px) rotate(-360deg); opacity: 0.8; }
         }
         @keyframes innerOrbit {
-          0% { transform: translate(-50%, -50%) rotate(0deg) translateX(60px) rotate(0deg); opacity: 0.8; }
+          0% { transform: translate(-50%, -50%) rotate(0deg) translateX(75px) rotate(0deg); opacity: 0.8; }
           50% { opacity: 1; }
-          100% { transform: translate(-50%, -50%) rotate(-360deg) translateX(60px) rotate(360deg); opacity: 0.8; }
+          100% { transform: translate(-50%, -50%) rotate(-360deg) translateX(75px) rotate(360deg); opacity: 0.8; }
         }
         @keyframes fadeIn {
           from { opacity: 0; }

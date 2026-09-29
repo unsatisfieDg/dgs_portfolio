@@ -7,6 +7,7 @@ import Projects from '../components/Projects';
 import Certifications from '../components/Certifications';
 import Footer from '../components/Footer';
 import DarkModeToggle from '../components/DarkModeToggle';
+import AIAssistant from '../components/AIAssistant';
 import { Briefcase, BookOpen, Sparkles } from 'lucide-react';
 
 export default function Home() {
@@ -170,10 +171,6 @@ export default function Home() {
             <div className="fade-in-scroll">
               <TechStack />
             </div>
-            
-            <div id="certifications" className="fade-in-scroll">
-              <Certifications />
-            </div>
 
             {/* Desktop Outside World */}
             <div className="hidden lg:block bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-2xl border border-gray-200 dark:border-gray-800 p-6 sm:p-7 shadow-sm fade-in-scroll">
@@ -261,6 +258,10 @@ export default function Home() {
             <div id="projects" className="fade-in-scroll">
               <Projects />
             </div>
+            
+            <div id="certifications" className="fade-in-scroll">
+              <Certifications />
+            </div>
           </div>
         </div>
 
@@ -294,6 +295,9 @@ export default function Home() {
 
       {/* Footer */}
       <Footer />
+
+      {/* Floating Sticky AI Assistant */}
+      <AIAssistant />
 
       <style>{`
         .fade-in-scroll {
