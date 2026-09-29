@@ -36,7 +36,7 @@ export default function AllProjects() {
         {/* Header */}
         <div className="mb-6 sm:mb-8">
           <Link 
-            to="/#projects" 
+            to="/" 
             className="inline-flex items-center gap-1.5 sm:gap-2 text-sm sm:text-base text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors mb-3 sm:mb-4"
           >
             <ArrowLeft size={18} className="sm:w-5 sm:h-5" />
