@@ -101,3 +101,26 @@
   background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.12), transparent 70%);
 }
 
+/* 🌓 View Transitions API for Circular Expand Dark Mode Toggle (Bryll Lim style) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+.dark::view-transition-old(root) {
+  z-index: 9999;
+}
+
+.dark::view-transition-new(root) {
+  z-index: 1;
+}
+
