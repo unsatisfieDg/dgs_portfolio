@@ -214,7 +214,7 @@ export default function TechStack() {
       name: "Antigravity IDE",
       category: "devtools",
       categoryName: "Dev Tools",
-      logo: "https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a611345.svg",
+      logo: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><defs><linearGradient id='ag' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%236366F1'/><stop offset='50%25' stop-color='%23A855F7'/><stop offset='100%25' stop-color='%23EC4899'/></linearGradient></defs><path fill='url(%23ag)' d='M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z'/></svg>",
       glowColor: "rgba(99, 102, 241, 0.4)",
       borderColor: "group-hover:border-indigo-500/50",
       desc: "Advanced agentic AI coding environment engineered by Google DeepMind for pair programming, fullstack development & system automation."
@@ -223,7 +223,7 @@ export default function TechStack() {
       name: "Claude Code",
       category: "devtools",
       categoryName: "Dev Tools",
-      logo: "https://upload.wikimedia.org/wikipedia/commons/7/70/Anthropic_logo.svg",
+      logo: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23D97706' d='M12 1.5L14.7 9.3L22.5 12L14.7 14.7L12 22.5L9.3 14.7L1.5 12L9.3 9.3L12 1.5Z'/><path fill='%23F59E0B' d='M12 5.5L13.6 10.4L18.5 12L13.6 13.6L12 18.5L10.4 13.6L5.5 12L10.4 10.4L12 5.5Z'/></svg>",
       glowColor: "rgba(217, 119, 6, 0.4)",
       borderColor: "group-hover:border-amber-500/50",
       desc: "Agentic AI coding tool for terminal workflows, autonomous refactoring, codebase search & rapid development."
