@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="agGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#4285F4" />
+      <stop offset="33%"  stop-color="#9B51E0" />
+      <stop offset="66%"  stop-color="#EA4335" />
+      <stop offset="100%" stop-color="#FBBC05" />
+    </linearGradient>
+  </defs>
+  <path fill="url(#agGrad)" d="M50 0 C50 27.614 27.614 50 0 50 C27.614 50 50 72.386 50 100 C50 72.386 72.386 50 100 50 C72.386 50 50 27.614 50 0 Z" />
+  <path fill="#FFFFFF" d="M50 22 C50 37.464 37.464 50 22 50 C37.464 50 50 62.536 50 78 C50 62.536 62.536 50 78 50 C62.536 50 50 37.464 50 22 Z" opacity="0.3" />
+</svg>
